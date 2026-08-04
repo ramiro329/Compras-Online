@@ -117,9 +117,9 @@
                                             items,
                                             external_reference: pedido_id.toString(),
                                         back_urls: {
-    success: "https://compras-online-red.vercel.app/success",
-    failure: "https://compras-online-red.vercel.app/failure",
-    pending: "https://compras-online-red.vercel.app/pending"
+    success: "https://compras-online-self.vercel.app/success",
+    failure: "https://compras-online-self.vercel.app/failure",
+    pending: "https://compras-online-self.vercel.app/pending"
 },
                                             auto_return: 'approved',
                                             notification_url: 'https://hawkish-henotheistic-olive.ngrok-free.dev/payment/webhook'
