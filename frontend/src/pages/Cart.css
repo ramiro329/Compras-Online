@@ -1,0 +1,262 @@
+.carrito-page {
+    min-height: calc(100vh - 70px);
+    background-color: #f5f5f5;
+    padding: 40px 20px;
+}
+
+.carrito-titulo {
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 35px;
+}
+
+.carrito-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 30px;
+
+    align-items: start;
+}
+
+.carrito-productos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.carrito-producto {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 25px;
+
+    align-items: center;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.carrito-producto-info h3 {
+    margin: 0 0 8px;
+    color: #1f2937;
+}
+
+.carrito-precio {
+    font-weight: bold;
+    font-size: 18px;
+    color: #1f2937;
+}
+
+.carrito-producto-info p {
+    margin: 5px 0;
+}
+
+.carrito-cantidad {
+    text-align: center;
+}
+
+.carrito-cantidad > span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.cantidad-controles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cantidad-controles button {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #1f2937;
+    color: white;
+
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cantidad-controles button:hover {
+    background-color: #374151;
+}
+
+.cantidad-controles span {
+    min-width: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.carrito-eliminar {
+    border: none;
+    border-radius: 6px;
+
+    padding: 9px 12px;
+
+    background-color: #f3f4f6;
+    color: #dc2626;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.carrito-eliminar:hover {
+    background-color: #fee2e2;
+}
+
+.carrito-resumen {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    position: sticky;
+    top: 20px;
+}
+
+.carrito-resumen h2 {
+    margin-top: 0;
+    color: #1f2937;
+}
+
+.carrito-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 0;
+    margin-bottom: 20px;
+
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+    font-size: 18px;
+}
+
+.carrito-total strong {
+    font-size: 24px;
+    color: #1f2937;
+}
+
+.metodo-pago {
+    display: block;
+    margin: 12px 0;
+
+    cursor: pointer;
+}
+
+.metodo-pago input {
+    margin-right: 8px;
+}
+
+.metodo-descripcion {
+    font-size: 14px;
+    color: #666;
+
+    background-color: #f9fafb;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.datos-entrega {
+    margin-top: 20px;
+}
+
+.datos-entrega h3 {
+    color: #1f2937;
+}
+
+.datos-entrega input,
+.datos-entrega textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px;
+    margin-bottom: 10px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    font-family: inherit;
+}
+
+.datos-entrega textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.datos-entrega input:focus,
+.datos-entrega textarea:focus {
+    outline: none;
+    border-color: #1f2937;
+}
+
+.carrito-vaciar,
+.carrito-confirmar {
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    border-radius: 6px;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    margin-top: 12px;
+}
+
+.carrito-vaciar {
+    background-color: #f3f4f6;
+    color: #dc2626;
+}
+
+.carrito-vaciar:hover {
+    background-color: #fee2e2;
+}
+
+.carrito-confirmar {
+    background-color: #1f2937;
+    color: white;
+}
+
+.carrito-confirmar:hover {
+    background-color: #374151;
+}
+
+
+.carrito-vacio {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.carrito-vacio h2 {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.carrito-vacio a {
+    display: inline-block;
+
+    padding: 11px 20px;
+
+    background-color: #1f2937;
+    color: white;
+
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.carrito-vacio a:hover {
+    background-color: #374151;
+}

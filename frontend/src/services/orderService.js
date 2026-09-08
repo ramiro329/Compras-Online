@@ -1,9 +1,14 @@
 import useApi from '../customHooks/useApi'
 
 // Obtener todos los pedidos (Administrador)
-export const getAllOrders = async () => {
+export const getAllOrders = async (pagina = 1, limite = 10) => {
 
-    const response = await useApi.get('/pedidos')
+    const response = await useApi.get('/pedidos', {
+        params: {
+            page: pagina,
+            limit: limite
+        }
+    })
 
     return response.data
 }

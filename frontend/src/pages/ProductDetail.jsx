@@ -4,10 +4,13 @@ import { getProductById } from '../services/productService'
 import Navbar from '../components/Navbar'
 import useCartStore from '../store/useCartStore'
 import useAuthStore from '../store/authStore'
-
+import '../pages/ProductDetail.css'
+import { useNavigate } from 'react-router-dom'
 const ProductDetail = () => {
 
     const { id } = useParams()
+
+    const navigate = useNavigate()
 
     const { user } = useAuthStore()
 
@@ -86,58 +89,59 @@ const ProductDetail = () => {
     }
 
 
+   
+
+
     return (
+    <>
+        <Navbar />
 
-        <>
+        <div className="detalle-contenedor">
+            <button
+                className="boton-volver"
+                onClick={() => navigate(-1)}
+            >
+                ← Volver
+            </button>
 
-            <Navbar />
+            <main className="detalle-producto">
+                <div className="detalle-imagen">
+                    <img
+                        src={producto.imagen_principal || '/sin-imagen.png'}
+                        alt={producto.nombre}
+                    />
+                </div>
 
-            <div className="detalle-producto">
+                <div className="detalle-info">
+                    <p className="detalle-categoria">
+                        {producto.categoria}
+                    </p>
 
-                <img
-                    src={producto.imagen_principal || '/sin-imagen.png'}
-                    alt={producto.nombre}
-                />
+                    <h1>{producto.nombre}</h1>
 
-
-                <div>
-
-                    <h1>
-                        {producto.nombre}
-                    </h1>
-
-
-                    <p>
+                    <p className="detalle-descripcion">
                         {producto.descripcion}
                     </p>
 
-
-                    <h2>
+                    <h2 className="detalle-precio">
                         ${producto.precio}
                     </h2>
 
-
-                    <p>
+                    <p className="detalle-stock">
                         Stock disponible: {producto.stock}
                     </p>
 
-
-                    <p>
-                        Categoría: {producto.categoria}
-                    </p>
-
-
-                    <button onClick={handleAgregarCarrito}>
+                    <button
+                        className="detalle-carrito"
+                        onClick={handleAgregarCarrito}
+                    >
                         🛒 Agregar al carrito
                     </button>
-
                 </div>
-
-            </div>
-
-        </>
-
-    )
+            </main>
+        </div>
+    </>
+)
 
 }
 

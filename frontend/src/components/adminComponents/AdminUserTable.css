@@ -1,0 +1,191 @@
+.admin-users {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding: 30px;
+}
+
+.admin-users-header {
+    max-width: 1200px;
+    margin: 0 auto 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.admin-users-header h2 {
+    margin: 0 0 5px;
+    color: #1f2937;
+}
+
+.admin-users-header p {
+    margin: 0;
+    color: #666;
+}
+
+.admin-users-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.admin-users-controls input {
+    width: 230px;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    font-size: 14px;
+}
+
+.admin-users-controls input:focus {
+    outline: none;
+    border-color: #1f2937;
+}
+
+.usuarios-toggle {
+    padding: 11px 15px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #1f2937;
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.usuarios-toggle:hover {
+    background-color: #374151;
+}
+
+
+
+.usuarios-table-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    overflow-x: auto;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.usuarios-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 750px;
+}
+
+.usuarios-table th {
+    background-color: #1f2937;
+    color: white;
+
+    padding: 14px;
+
+    text-align: left;
+
+    font-size: 14px;
+}
+
+.usuarios-table td {
+    padding: 14px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+.usuarios-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.usuarios-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.usuario-rol {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    background-color: #f3f4f6;
+
+    border-radius: 5px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+
+.usuario-eliminar,
+.usuario-restaurar {
+    border: none;
+    border-radius: 6px;
+
+    padding: 8px 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.usuario-eliminar {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.usuario-eliminar:hover {
+    background-color: #fecaca;
+}
+
+.usuario-restaurar {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+.usuario-restaurar:hover {
+    background-color: #bbf7d0;
+}
+
+
+@media (max-width: 800px) {
+
+    .admin-users {
+        padding: 20px;
+    }
+
+    .admin-users-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-users-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-users-controls input {
+        width: auto;
+    }
+
+    .usuarios-toggle {
+        width: 100%;
+    }
+
+}

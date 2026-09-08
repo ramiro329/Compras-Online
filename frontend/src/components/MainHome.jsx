@@ -4,6 +4,7 @@ import ProductCard from './ProductCard'
 import Navbar from './Navbar'
 import SearchBar from './SearchBar'
 import CategoryFilter from './CategoryFilter'
+import '../components/MainHome.css'
 const MainHome = () => {
 
     const [productos, setProductos] = useState([])
@@ -14,6 +15,10 @@ const MainHome = () => {
 
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('')
 
+    const [pagina, setPagina] = useState(1)
+    
+    const [totalPaginas, setTotalPaginas] = useState(1)
+
     
 
    
@@ -22,44 +27,63 @@ const MainHome = () => {
    
     const cargarProductos = async () => {
 
-        try {
+    try {
 
-            let response
+        let response
 
-           if(busqueda.trim() !== '') {
+        if (busqueda.trim() !== '') {
 
-    response = await searchProducts(busqueda)
+            response = await searchProducts(
+                busqueda,
+                pagina,
+                10
+            )
 
-} else if(categoriaSeleccionada !== '') {
+        } else if (categoriaSeleccionada !== '') {
 
-    response = await getProductsByCategory(categoriaSeleccionada)
+            response = await getProductsByCategory(
+                categoriaSeleccionada,
+                pagina,
+                10
+            )
 
-} else {
+        } else {
 
-    response = await getAllProducts()
-
-}
-
-            setProductos(response)
-
-        } catch (error) {
-
-            console.error(error)
-
-        } finally {
-
-            setLoading(false)
+            response = await getAllProducts(
+                pagina,
+                10
+            )
 
         }
 
+        setProductos(response.productos)
+        setTotalPaginas(response.totalPages)
+
+    } catch (error) {
+
+        console.error(error)
+
+    } finally {
+
+        setLoading(false)
+
     }
+
+}
+
+
+    useEffect(() => {
+
+    setPagina(1)
+
+}, [busqueda, categoriaSeleccionada])
 
 
   useEffect(() => {
 
     cargarProductos()
 
-}, [busqueda, categoriaSeleccionada])
+}, [busqueda, categoriaSeleccionada, pagina])
 
 
 
@@ -71,43 +95,79 @@ const MainHome = () => {
 
     return (
 
-        <>
+    <div className="main-home">
 
         <Navbar />
 
-        <SearchBar
-        value={busqueda}
-        onChange={setBusqueda}
-                          />
+        <div className="home-filters">
 
-                          <CategoryFilter 
-                            value={categoriaSeleccionada}
-                                onCategoryChange={setCategoriaSeleccionada}
-                                                                            />
+            <SearchBar
+                value={busqueda}
+                onChange={setBusqueda}
+            />
+
+            <CategoryFilter
+                value={categoriaSeleccionada}
+                onCategoryChange={setCategoriaSeleccionada}
+            />
+
+        </div>
+
+        <main className="home-content">
 
             <h1>Productos</h1>
 
-            {
-                productos.length > 0 ?
+            <div className="productos-container">
 
-                    productos.map((producto) => (
+                {
+                    productos.length > 0 ?
 
-                        <ProductCard
-                            key={producto.id}
-                            producto={producto}
-                        />
+                        productos.map((producto) => (
 
-                    ))
+                            <ProductCard
+                                key={producto.id}
+                                producto={producto}
+                            />
 
-                    :
+                        ))
 
-                    <h3>No hay productos disponibles.</h3>
+                        :
 
-            }
+                        <h3 className="sin-productos">
+                            No hay productos disponibles.
+                        </h3>
+                }
 
-        </>
+            </div>
 
-    )
+
+            <div className="paginacion">
+
+                <button
+                    disabled={pagina === 1}
+                    onClick={() => setPagina(pagina - 1)}
+                >
+                    Anterior
+                </button>
+
+                <span>
+                    Página {pagina} de {totalPaginas}
+                </span>
+
+                <button
+                    disabled={pagina === totalPaginas}
+                    onClick={() => setPagina(pagina + 1)}
+                >
+                    Siguiente
+                </button>
+
+            </div>
+
+        </main>
+
+    </div>
+
+)
 
 }
 

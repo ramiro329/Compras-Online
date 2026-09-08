@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { register } from '../services/authService'
 import Navbar from './Navbar'
-
+import '../components/MainRegister.css'
 const MainRegister = () => {
 
     const navigate = useNavigate()
@@ -47,66 +47,74 @@ const MainRegister = () => {
     }
 
     return (
-
-        <>
-
+    <>
         <Navbar />
 
-            <h2>Registrarse</h2>
+        <main className="register-page">
 
-            <form onSubmit={handleSubmit}>
+            <div className="register-card">
 
-                <input
-                    type="text"
-                    name="nombre"
-                    placeholder="Nombre"
-                    value={user.nombre}
-                    onChange={handleChange}
-                    required
-                />
-
-                <input
-                    type="text"
-                    name="apellido"
-                    placeholder="Apellido"
-                    value={user.apellido}
-                    onChange={handleChange}
-                    required
-                />
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Correo electrónico"
-                    value={user.email}
-                    onChange={handleChange}
-                    required
-                />
-
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Contraseña"
-                    value={user.password}
-                    onChange={handleChange}
-                    required
-                />
-
-                <button type="submit">
+                <h2>
                     Registrarse
-                </button>
+                </h2>
 
-            </form>
+                <form onSubmit={handleSubmit}>
 
-            <br />
+                    <input
+                        type="text"
+                        name="nombre"
+                        placeholder="Nombre"
+                        value={user.nombre}
+                        onChange={handleChange}
+                        required
+                    />
 
-            <Link to="/login">
-                ¿Ya tienes una cuenta? Inicia sesión
-            </Link>
+                    <input
+                        type="text"
+                        name="apellido"
+                        placeholder="Apellido"
+                        value={user.apellido}
+                        onChange={handleChange}
+                        required
+                    />
 
-        </>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Correo electrónico"
+                        value={user.email}
+                        onChange={handleChange}
+                        required
+                    />
 
-    )
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Contraseña"
+                        value={user.password}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <button type="submit">
+                        Registrarse
+                    </button>
+
+                </form>
+
+                <div className="register-links">
+
+                    <Link to="/login">
+                        ¿Ya tienes una cuenta? Inicia sesión
+                    </Link>
+
+                </div>
+
+            </div>
+
+        </main>
+    </>
+)
 
 }
 

@@ -32,16 +32,7 @@ export const getOneUserInactive = async (id) => {
     return response.data
 }
 
-// Editar usuario
-export const updateUser = async (id, user) => {
 
-    const response = await useApi.put(
-        `/usuario/editar/${id}`,
-        user
-    )
-
-    return response.data
-}
 
 // Eliminar usuario (Administrador)
 export const deleteUser = async (id) => {

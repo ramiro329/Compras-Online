@@ -3,7 +3,8 @@ import Navbar from '../components/Navbar'
 import useFavoriteStore from '../store/useFavoriteStore'
 import useAuthStore from '../store/authStore'
 import { Link } from 'react-router-dom'
-
+import '../pages/Favorites.css'
+import Footer from '../components/Footer'
 
 const Favorites = () => {
 
@@ -35,77 +36,92 @@ const Favorites = () => {
 
 
     return (
+    <>
+        <Navbar />
 
-        <>
+        <main className="favoritos-page">
 
-            <Navbar />
-
-            <h1>
+            <h1 className="favoritos-titulo">
                 Mis favoritos
             </h1>
-
 
             {
                 favoritos.length > 0 ?
 
-                favoritos.map((producto) => (
+                <div className="favoritos-grid">
 
-                    <div key={producto.id}>
+                    {favoritos.map((producto) => (
 
-                        <img
-                            src={producto.imagen || '/sin-imagen.png'}
-                            alt={producto.nombre}
-                        />
-
-
-                        <h3>
-                            {producto.nombre}
-                        </h3>
-
-
-                        <p>
-                            ${producto.precio}
-                        </p>
-
-
-                        <p>
-                            Stock: {producto.stock}
-                        </p>
-
-
-                        <button
-                            onClick={() =>
-                                eliminarFavorito(
-                                    user.id,
-                                    producto.id
-                                )
-                            }
+                        <div
+                            className="favorito-card"
+                            key={producto.id}
                         >
-                            💔 Quitar favorito
-                        </button>
 
+                            <div className="favorito-imagen-container">
+                                <img
+                                    src={producto.imagen || '/sin-imagen.png'}
+                                    alt={producto.nombre}
+                                />
+                            </div>
 
-                        <Link to={`/producto/${producto.id}`}>
-                            👁 Ver detalle
-                        </Link>
+                            <div className="favorito-info">
 
+                                <h3>
+                                    {producto.nombre}
+                                </h3>
 
-                    </div>
+                                <p className="favorito-precio">
+                                    ${producto.precio}
+                                </p>
 
-                ))
+                                <p className="favorito-stock">
+                                    Stock: {producto.stock}
+                                </p>
+
+                                <button
+                                    className="favorito-quitar"
+                                    onClick={() =>
+                                        eliminarFavorito(
+                                            user.id,
+                                            producto.id
+                                        )
+                                    }
+                                >
+                                    💔 Quitar favorito
+                                </button>
+
+                                <Link
+                                    className="favorito-detalle"
+                                    to={`/producto/${producto.id}`}
+                                >
+                                    👁 Ver detalle
+                                </Link>
+
+                            </div>
+
+                        </div>
+
+                    ))}
+
+                </div>
 
                 :
 
-                <h2>
-                    No tienes productos favoritos.
-                </h2>
+                <div className="favoritos-vacio">
+                    <h2>
+                        No tienes productos favoritos.
+                    </h2>
 
+                    <Link to="/">
+                        Ver productos
+                    </Link>
+                </div>
             }
 
-
-        </>
-
-    )
+        </main>
+        <Footer />
+    </>
+)
 
 }
 

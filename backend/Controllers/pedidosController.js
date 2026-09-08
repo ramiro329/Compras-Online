@@ -3,18 +3,73 @@ const { conection } = require('../Config/database')
 // Obtener todos los pedidos
 const getAllOrders = (req, res) => {
 
-    const consulta = `
-        SELECT
-            p.*,
-            e.nombre AS estado
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 10
+    const offset = (page - 1) * limit
+
+
+    const consultaTotal = `
+        SELECT COUNT(*) AS total
         FROM pedidos p
+        INNER JOIN usuarios u
+            ON p.usuario_id = u.id
         INNER JOIN estados_pedido e
             ON p.estado_id = e.id
     `
 
-    conection.query(consulta, (err, results) => {
-        if (err) throw err
-        res.json(results)
+
+    const consulta = `
+        SELECT
+            p.*,
+            u.nombre,
+            u.apellido,
+            e.nombre AS estado
+        FROM pedidos p
+        INNER JOIN usuarios u
+            ON p.usuario_id = u.id
+        INNER JOIN estados_pedido e
+            ON p.estado_id = e.id
+        ORDER BY p.id DESC
+        LIMIT ? OFFSET ?
+    `
+
+
+    conection.query(consultaTotal, (err, countResult) => {
+
+        if (err) {
+            return res.status(500).json({
+                message: 'Error al obtener el total de pedidos'
+            })
+        }
+
+
+        const total = countResult[0].total
+        const totalPages = Math.ceil(total / limit)
+
+
+        conection.query(
+            consulta,
+            [limit, offset],
+            (err, results) => {
+
+                if (err) {
+                    return res.status(500).json({
+                        message: 'Error al obtener los pedidos'
+                    })
+                }
+
+
+                res.json({
+                    page,
+                    limit,
+                    total,
+                    totalPages,
+                    pedidos: results
+                })
+
+            }
+        )
+
     })
 }
 

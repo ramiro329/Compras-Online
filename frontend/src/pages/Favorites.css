@@ -1,0 +1,141 @@
+.favoritos-page {
+    min-height: calc(100vh - 70px);
+    background-color: #f5f5f5;
+    padding: 40px 20px;
+}
+
+.favoritos-titulo {
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 35px;
+}
+
+.favoritos-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.favorito-card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.favorito-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+}
+
+.favorito-imagen-container {
+    width: 100%;
+    height: 220px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fafafa;
+}
+
+.favorito-imagen-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 15px;
+}
+
+.favorito-info {
+    padding: 18px;
+}
+
+.favorito-info h3 {
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.favorito-precio {
+    font-size: 21px;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.favorito-stock {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.favorito-quitar {
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+
+    padding: 10px;
+    margin-bottom: 8px;
+
+    background-color: #f3f4f6;
+    color: #1f2937;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.favorito-quitar:hover {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.favorito-detalle {
+    display: block;
+    width: 100%;
+
+    box-sizing: border-box;
+
+    text-align: center;
+    text-decoration: none;
+
+    padding: 10px;
+
+    background-color: #1f2937;
+    color: white;
+
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.favorito-detalle:hover {
+    background-color: #374151;
+}
+
+.favoritos-vacio {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.favoritos-vacio h2 {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.favoritos-vacio a {
+    display: inline-block;
+    padding: 10px 20px;
+
+    background-color: #1f2937;
+    color: white;
+
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.favoritos-vacio a:hover {
+    background-color: #374151;
+}

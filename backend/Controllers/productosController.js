@@ -137,31 +137,228 @@ conection.query(consulta, [id],(err, results) =>{
 }
 
 const updateProducts = (req, res) => {
-const id = req.params.id 
-const nombre = req.body.nombre
-const descripcion = req.body.descripcion
-const precio = req.body.precio
-const stock = req.body.stock
-const stock_minimo = req.body.stock_minimo
-const categoria_id = req.body.categoria_id
 
-const consulta = 'update productos set nombre = ?, descripcion = ?, precio = ?, stock = ?, stock_minimo = ?, categoria_id = ? where id = ? and activo = 1'
+    const id = req.params.id
 
-conection.query(consulta, [nombre, descripcion, precio, stock, stock_minimo, categoria_id, id], (err, results) => {
-    if (err) throw err
-    res.json(results)
-})
+    const {
+        nombre,
+        descripcion,
+        precio,
+        stock,
+        stock_minimo,
+        categoria_id,
+        imagen
+    } = req.body
+
+
+    const consultaProducto = `
+        UPDATE productos
+        SET
+            nombre = ?,
+            descripcion = ?,
+            precio = ?,
+            stock = ?,
+            stock_minimo = ?,
+            categoria_id = ?
+        WHERE id = ?
+        AND activo = 1
+    `
+
+
+    conection.query(
+        consultaProducto,
+        [
+            nombre,
+            descripcion,
+            precio,
+            stock,
+            stock_minimo,
+            categoria_id,
+            id
+        ],
+        (err, results) => {
+
+            if (err) throw err
+
+
+            if (results.affectedRows === 0) {
+                return res.status(404).json({
+                    message: 'Producto no encontrado'
+                })
+            }
+
+
+            if (imagen) {
+
+                const consultaImagen = `
+                    SELECT id
+                    FROM imagenes_producto
+                    WHERE producto_id = ?
+                    AND principal = 1
+                `
+
+                conection.query(
+                    consultaImagen,
+                    [id],
+                    (err, imagenResult) => {
+
+                        if (err) throw err
+
+
+                        if (imagenResult.length > 0) {
+
+                            const actualizarImagen = `
+                                UPDATE imagenes_producto
+                                SET url = ?
+                                WHERE producto_id = ?
+                                AND principal = 1
+                            `
+
+                            conection.query(
+                                actualizarImagen,
+                                [imagen, id],
+                                (err) => {
+
+                                    if (err) throw err
+
+                                    res.json({
+                                        message: 'Producto actualizado'
+                                    })
+
+                                }
+                            )
+
+                        } else {
+
+                            const insertarImagen = `
+                                INSERT INTO imagenes_producto
+                                (
+                                    producto_id,
+                                    url,
+                                    principal
+                                )
+                                VALUES (?, ?, 1)
+                            `
+
+                            conection.query(
+                                insertarImagen,
+                                [id, imagen],
+                                (err) => {
+
+                                    if (err) throw err
+
+                                    res.json({
+                                        message: 'Producto actualizado'
+                                    })
+
+                                }
+                            )
+
+                        }
+
+                    }
+                )
+
+            } else {
+
+                res.json({
+                    message: 'Producto actualizado'
+                })
+
+            }
+
+        }
+    )
 }
 
 const createProducts = (req, res) => {
- const {nombre, descripcion, precio, stock, stock_minimo, categoria_id} = req.body
 
-const consulta = 'insert into productos (nombre, descripcion, precio, stock, stock_minimo, categoria_id) values(?,?,?,?,?,?)'
+    const {
+        nombre,
+        descripcion,
+        precio,
+        stock,
+        stock_minimo,
+        categoria_id,
+        imagen
+    } = req.body
 
-conection.query(consulta, [nombre, descripcion, precio, stock, stock_minimo, categoria_id], (err, results) => {
-    if (err) throw err
-    res.json({message:'Producto creado'})
-})
+
+    const consultaProducto = `
+        INSERT INTO productos
+        (
+            nombre,
+            descripcion,
+            precio,
+            stock,
+            stock_minimo,
+            categoria_id
+        )
+        VALUES (?, ?, ?, ?, ?, ?)
+    `
+
+
+    conection.query(
+        consultaProducto,
+        [
+            nombre,
+            descripcion,
+            precio,
+            stock,
+            stock_minimo,
+            categoria_id
+        ],
+        (err, results) => {
+
+            if (err) throw err
+
+
+            const producto_id = results.insertId
+
+
+            if (imagen) {
+
+                const consultaImagen = `
+                    INSERT INTO imagenes_producto
+                    (
+                        producto_id,
+                        url,
+                        principal
+                    )
+                    VALUES (?, ?, 1)
+                `
+
+
+                conection.query(
+                    consultaImagen,
+                    [
+                        producto_id,
+                        imagen
+                    ],
+                    (err) => {
+
+                        if (err) throw err
+
+                        res.json({
+                            message: 'Producto creado',
+                            producto_id
+                        })
+
+                    }
+                )
+
+            } else {
+
+                res.json({
+                    message: 'Producto creado',
+                    producto_id
+                })
+
+            }
+
+        }
+    )
+
 }
 
 const deleteProducts = (req, res) => {
@@ -200,58 +397,139 @@ conection.query(consulta, [id], (err, results) => {
 }
 
 const buscarProductosActivos = (req, res) => {
+
     const nombre = req.query.nombre
-    const consulta = `SELECT
-    p.*,
-    ip.url AS imagen
-FROM productos p
-LEFT JOIN imagenes_producto ip
-    ON p.id = ip.producto_id
-    AND ip.principal = 1
-WHERE p.nombre LIKE ?
-AND p.activo = 1`
 
-    conection.query(consulta, [`%${nombre}%`], (err, results) =>{
-        if (err) throw err;
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 10
+    const offset = (page - 1) * limit
 
-        if (results.length === 0) {
-            return res.status(404).json({ message: 'No se encontraron productos' });
+
+    const consultaTotal = `
+        SELECT COUNT(*) AS total
+        FROM productos p
+        WHERE p.nombre LIKE ?
+        AND p.activo = 1
+    `
+
+
+    conection.query(
+        consultaTotal,
+        [`%${nombre}%`],
+        (err, totalResults) => {
+
+            if (err) throw err
+
+            const total = totalResults[0].total
+
+            const totalPages = Math.ceil(total / limit)
+
+
+            const consulta = `
+                SELECT
+                    p.*,
+                    ip.url AS imagen
+                FROM productos p
+                LEFT JOIN imagenes_producto ip
+                    ON p.id = ip.producto_id
+                    AND ip.principal = 1
+                WHERE p.nombre LIKE ?
+                AND p.activo = 1
+                LIMIT ? OFFSET ?
+            `
+
+
+            conection.query(
+                consulta,
+                [`%${nombre}%`, limit, offset],
+                (err, results) => {
+
+                    if (err) throw err
+
+
+                    res.json({
+                        page,
+                        limit,
+                        total,
+                        totalPages,
+                        productos: results
+                    })
+
+                }
+            )
+
         }
-
-        res.json(results);
-    })
+    )
 }
 
 const buscarProductosPorCategoria = (req, res) => {
-    const { categoria_id } = req.query;
 
-    const consulta = `
-        SELECT
-            p.*,
-            c.nombre AS categoria,
-            ip.url AS imagen
+    const { categoria_id } = req.query
+
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 10
+    const offset = (page - 1) * limit
+
+
+    const consultaTotal = `
+        SELECT COUNT(*) AS total
         FROM productos p
-        INNER JOIN categorias c
-            ON p.categoria_id = c.id
-        LEFT JOIN imagenes_producto ip
-            ON p.id = ip.producto_id
-            AND ip.principal = 1
         WHERE p.categoria_id = ?
         AND p.activo = 1
-    `;
+    `
 
-    conection.query(consulta, [categoria_id], (err, results) => {
-        if (err) throw err;
 
-        if (results.length === 0) {
-            return res.status(404).json({
-                message: 'No se encontraron productos'
-            });
+    conection.query(
+        consultaTotal,
+        [categoria_id],
+        (err, totalResults) => {
+
+            if (err) throw err
+
+            const total = totalResults[0].total
+
+            const totalPages = Math.ceil(total / limit)
+
+
+            const consulta = `
+                SELECT
+                    p.*,
+                    c.nombre AS categoria,
+                    ip.url AS imagen
+                FROM productos p
+                INNER JOIN categorias c
+                    ON p.categoria_id = c.id
+                LEFT JOIN imagenes_producto ip
+                    ON p.id = ip.producto_id
+                    AND ip.principal = 1
+                WHERE p.categoria_id = ?
+                AND p.activo = 1
+                LIMIT ? OFFSET ?
+            `
+
+
+            conection.query(
+                consulta,
+                [categoria_id, limit, offset],
+                (err, results) => {
+
+                    if (err) throw err
+
+
+                    res.json({
+                        page,
+                        limit,
+                        total,
+                        totalPages,
+                        productos: results
+                    })
+
+                }
+            )
+
         }
-
-        res.json(results);
-    });
-};
+    )
+}
 
 
 

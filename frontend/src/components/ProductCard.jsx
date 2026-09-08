@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import useCartStore from '../store/useCartStore'
 import useAuthStore from '../store/authStore'
-import useFavoriteStore from '../store/useFavoriteStore'
+import useFavoriteStore from '../store/useFavoriteStore'    
+import '../components/ProductCard.css'
 
 const ProductCard = ({ producto }) => {
 
@@ -62,66 +63,78 @@ const favorito = esFavorito(producto.id)
 
     return (
 
-        <div className="product-card">
+    <div className="product-card">
 
+        <div className="product-image-container">
             <img
                 src={producto.imagen_principal || '/sin-imagen.png'}
                 alt={producto.nombre}
             />
+        </div>
+
+        <div className="product-info">
 
             <h3>{producto.nombre}</h3>
 
-            <p>
+            <p className="product-price">
                 ${producto.precio}
             </p>
 
-            <p>
+            <p className="product-stock">
                 Stock: {producto.stock}
             </p>
 
             <button
-    onClick={() => {
+                className="product-button favorite-button"
+                onClick={() => {
 
-        if (!user) {
+                    if (!user) {
 
-            alert('Debes iniciar sesión para agregar favoritos')
-            return
+                        alert('Debes iniciar sesión para agregar favoritos')
+                        return
 
-        }
+                    }
 
+                    if (favorito) {
 
-        if (favorito) {
+                        eliminarFavorito(
+                            user.id,
+                            producto.id
+                        )
 
-            eliminarFavorito(
-                user.id,
-                producto.id
-            )
+                    } else {
 
-        } else {
+                        agregarFavorito(
+                            user.id,
+                            producto.id
+                        )
 
-            agregarFavorito(
-                user.id,
-                producto.id
-            )
+                    }
 
-        }
+                }}
+            >
+                {favorito ? '💔 Quitar favorito' : '❤️ Favorito'}
+            </button>
 
-    }}
->
-    {favorito ? '💔 Quitar favorito' : '❤️ Favorito'}
-</button>
+            <button
+                className="product-button cart-button"
+                onClick={handleAgregarCarrito}
+            >
+                🛒 Agregar al carrito
+            </button>
 
-            <button onClick={handleAgregarCarrito}>
-    🛒 Agregar al carrito
-</button>
-
-            <Link to={`/producto/${producto.id}`}>
-    👁 Ver detalle
-</Link>
+            <Link
+                className="product-detail"
+                to={`/producto/${producto.id}`}
+            >
+                👁 Ver detalle
+            </Link>
 
         </div>
 
-    )
+    </div>
+
+)
 
 }
 

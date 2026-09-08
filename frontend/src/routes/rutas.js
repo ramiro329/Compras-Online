@@ -8,5 +8,8 @@ export const SUCCESS = "/success";
 export const FAVORITES = "/favoritos";
 // export const PROFILE = "/perfil";
 
-// export const ADMIN_PRODUCTS = "/admin/productos";
-// export const ADMIN_USERS = "/admin/usuarios";
+export const ADMIN_PANEL = "/admin";
+export const ADMIN_PEDIDOS = "/admin/pedidos";
+export const ADMIN_PRODUCTOS = "/admin/productos";
+export const ADMIN_CATEGORIAS = "/admin/categorias";
+export const ADMIN_USUARIOS = "/admin/usuarios";

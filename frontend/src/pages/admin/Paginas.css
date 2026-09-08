@@ -1,0 +1,19 @@
+.pagina-titulo {
+    max-width: 1200px;
+    margin: 0 auto 25px;
+    color: #1f2937;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 2px solid #00014f;
+    padding-bottom: 12px;
+}
+
+.fondo-pagina {
+  background: linear-gradient(
+    135deg,
+    hsl(45, 100%, 70%) 0%,   /* dorado claro */
+    #fee44e 100%  /* dorado estándar */
+  );
+}

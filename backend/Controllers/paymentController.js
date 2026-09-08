@@ -230,6 +230,7 @@
             }
 
             const payment = await fetch(
+                
                 `https://api.mercadopago.com/v1/payments/${paymentId}`,
                 {
                     headers: {
@@ -237,12 +238,14 @@
                     }
                 }
             ).then(res => res.json())
+            console.log("PAYMENT:", payment)
 
             if (payment.status !== "approved") {
                 return res.sendStatus(204)
             }
 
             const pedido_id = payment.external_reference
+            console.log("PEDIDO ID:", pedido_id)
 
             const consultaPedido = `
                 SELECT *
@@ -251,6 +254,7 @@
             `
 
             conection.query(consultaPedido, [pedido_id], (err, pedidoResult) => {
+                console.log("PEDIDO RESULT:", pedidoResult)
 
                 if (err) throw err
 
@@ -268,13 +272,17 @@
                 // Cambiar a PAGADO
                 const actualizarPedido = `
                     UPDATE pedidos
-                    SET estado_id = 2
-                    WHERE id = ?
+                     SET
+                        estado_id = 2,
+                        payment_id = ?,
+                        fecha_pago = NOW()
+                        WHERE id = ?
                 `
 
-                conection.query(actualizarPedido, [pedido_id], (err) => {
+                conection.query(actualizarPedido, [payment.id, pedido_id], (err) => {
 
                     if (err) throw err
+                    console.log("PEDIDO ACTUALIZADO")
 
                     const consultaDetalle = `
                         SELECT
@@ -291,8 +299,10 @@
                     conection.query(consultaDetalle, [pedido_id], (err, productos) => {
 
                         if (err) throw err
+                        console.log("DETALLE PEDIDO:", productos)
 
                         const actualizarStock = (index) => {
+                            console.log("ACTUALIZANDO STOCK INDEX:", index)
 
                             if (index >= productos.length) {
 

@@ -1,19 +1,31 @@
 import useApi from '../customHooks/useApi'
 
 // Obtener todos los productos activos
-export const getAllProducts = async () => {
+export const getAllProducts = async (page = 1, limit = 10) => {
 
-    const response = await useApi.get('/productos')
+    const response = await useApi.get('/productos', {
+        params: {
+            page,
+            limit
+        }
+    })
 
-    return response.data.productos
+    return response.data
+
 }
 
 // Obtener todos los productos inactivos (Admin)
-export const getAllInactiveProducts = async () => {
+export const getAllInactiveProducts = async (page = 1, limit = 10) => {
 
-    const response = await useApi.get('/productos/inactivos')
+    const response = await useApi.get('/productos/inactivos', {
+        params: {
+            page,
+            limit
+        }
+    })
 
     return response.data
+
 }
 
 // Obtener un producto activo
@@ -32,26 +44,33 @@ export const getInactiveProductById = async (id) => {
     return response.data
 }
 
-// Buscar productos por nombre
-export const searchProducts = async (nombre) => {
+export const searchProducts = async (nombre, pagina, limite) => {
 
     const response = await useApi.get('/productos/buscar', {
-        params: { nombre }
+        params: {
+            nombre,
+            page: pagina,
+            limit: limite
+        }
     })
 
     return response.data
 }
 
-// Buscar productos por categoría
-export const getProductsByCategory = async (categoria_id) => {
+
+
+export const getProductsByCategory = async (categoria_id, pagina, limite) => {
 
     const response = await useApi.get('/productos/categoria', {
-        params: { categoria_id }
+        params: {
+            categoria_id,
+            page: pagina,
+            limit: limite
+        }
     })
 
     return response.data
 }
-
 // Crear producto (Admin)
 export const createProduct = async (product) => {
 
@@ -117,3 +136,6 @@ export const getProductsNormalStock = async () => {
 
     return response.data
 }
+
+
+

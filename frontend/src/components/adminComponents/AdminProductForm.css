@@ -1,0 +1,188 @@
+
+.admin-product-form {
+    width: 100%;
+}
+
+/* Encabezado */
+
+.admin-product-form-header {
+    margin-bottom: 25px;
+}
+
+.admin-product-form-header h3 {
+    margin: 0 0 6px;
+    color: #1f2937;
+    font-size: 22px;
+}
+
+.admin-product-form-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* Formulario */
+
+.producto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-grupo label {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-grupo input,
+.form-grupo textarea,
+.form-grupo select {
+    width: 100%;
+    padding: 11px 13px;
+    box-sizing: border-box;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    background-color: white;
+    color: #1f2937;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-grupo input:focus,
+.form-grupo textarea:focus,
+.form-grupo select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.form-grupo textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+
+/* Precio, stock y stock mínimo */
+
+.form-fila {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+
+/* Vista previa */
+
+.producto-preview {
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #f9fafb;
+}
+
+.producto-preview p {
+    margin: 0 0 10px;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.preview-imagen-container {
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+.preview-imagen-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* Botones */
+
+.form-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 8px;
+    padding-top: 20px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.producto-form-guardar,
+.producto-form-cancelar {
+    border: none;
+    border-radius: 6px;
+    padding: 11px 18px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.producto-form-guardar {
+    background-color: #2563eb;
+    color: white;
+}
+
+.producto-form-guardar:hover {
+    background-color: #1d4ed8;
+}
+
+.producto-form-cancelar {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.producto-form-cancelar:hover {
+    background-color: #d1d5db;
+}
+
+
+/* Responsive */
+
+@media (max-width: 700px) {
+
+    .form-fila {
+        grid-template-columns: 1fr;
+    }
+
+    .form-acciones {
+        flex-direction: column-reverse;
+    }
+
+    .producto-form-guardar,
+    .producto-form-cancelar {
+        width: 100%;
+    }
+
+}
+

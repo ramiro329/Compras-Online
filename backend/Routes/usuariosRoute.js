@@ -3,7 +3,7 @@ const {getAllUsersActives,
     getAllUsersInactives,
     getOneUserActive,
     getOneUserInactive,
-    updateUser,
+    
     deleteUser,
     restoreUser,
     searchUserByName} = require('../Controllers/usuariosController')
@@ -14,7 +14,6 @@ const router = express.Router()
 
 
 
-router.put('/usuario/editar/:id', verifyToken, updateUser)
 
 router.get('/usuarios/activos', verifyToken, verifyRole('Administrador'), getAllUsersActives)
 

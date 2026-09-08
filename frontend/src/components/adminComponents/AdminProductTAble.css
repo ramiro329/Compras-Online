@@ -1,0 +1,262 @@
+.admin-productos {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 30px;
+}
+
+.admin-productos-header {
+    max-width: 1200px;
+    margin: 0 auto 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.admin-productos-header h2 {
+    margin: 0 0 5px;
+    color: #1f2937;
+}
+
+.admin-productos-header p {
+    margin: 0;
+    color: #666;
+}
+
+.admin-productos-controles {
+    display: flex;
+    gap: 10px;
+}
+
+.productos-toggle,
+.producto-crear {
+    border: none;
+    border-radius: 6px;
+
+    padding: 11px 15px;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.productos-toggle {
+    background-color: #1f2937;
+    color: white;
+}
+
+.productos-toggle:hover {
+    background-color: #374151;
+}
+
+.producto-crear {
+    background-color: #2563eb;
+    color: white;
+}
+
+.producto-crear:hover {
+    background-color: #1d4ed8;
+}
+
+.productos-table-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    overflow-x: auto;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.productos-table {
+    width: 100%;
+    min-width: 850px;
+
+    border-collapse: collapse;
+}
+
+.productos-table th {
+    background-color: #1f2937;
+    color: white;
+
+    padding: 14px;
+
+    text-align: left;
+
+    font-size: 14px;
+}
+
+.productos-table td {
+    padding: 12px 14px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+.productos-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.productos-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.producto-nombre {
+    font-weight: 600;
+    color: #1f2937 !important;
+}
+
+
+.admin-producto-imagen {
+    width: 60px;
+    height: 60px;
+
+    object-fit: contain;
+
+    border-radius: 6px;
+
+    background-color: #f9fafb;
+}
+
+.sin-imagen {
+    color: #999;
+    font-size: 12px;
+}
+
+
+.producto-acciones {
+    display: flex;
+    gap: 8px;
+}
+
+.producto-editar,
+.producto-eliminar,
+.producto-restaurar {
+    border: none;
+    border-radius: 6px;
+
+    padding: 8px 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.producto-editar {
+    background-color: #e0e7ff;
+    color: #3730a3;
+}
+
+.producto-editar:hover {
+    background-color: #c7d2fe;
+}
+
+.producto-eliminar {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.producto-eliminar:hover {
+    background-color: #fecaca;
+}
+
+.producto-restaurar {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+.producto-restaurar:hover {
+    background-color: #bbf7d0;
+}
+
+
+.productos-paginacion {
+    max-width: 1200px;
+    margin: 20px auto 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.productos-paginacion button {
+    border: none;
+    border-radius: 6px;
+
+    padding: 9px 15px;
+
+    background-color: #1f2937;
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.productos-paginacion button:hover:not(:disabled) {
+    background-color: #374151;
+}
+
+.productos-paginacion button:disabled {
+    background-color: #d1d5db;
+    color: #6b7280;
+
+    cursor: not-allowed;
+}
+
+.productos-paginacion span {
+    color: #374151;
+    font-weight: 600;
+}
+
+
+.producto-form-container {
+    max-width: 1200px;
+    margin: 0 auto 25px;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+@media (max-width: 800px) {
+
+    .admin-productos {
+        padding: 20px;
+    }
+
+    .admin-productos-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-productos-controles {
+        flex-direction: column;
+    }
+
+    .productos-toggle,
+    .producto-crear {
+        width: 100%;
+    }
+
+    .productos-paginacion {
+        gap: 10px;
+    }
+
+}

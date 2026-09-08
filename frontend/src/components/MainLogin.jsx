@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../services/authService'
 import useAuthStore from '../store/authStore'
 import Navbar from './Navbar'
+import '../pages/MainLogin.css'
 
 const MainLogin = () => {
 
@@ -55,51 +56,60 @@ const MainLogin = () => {
     }
 
     return (
-
-        <>
+    <>
         <Navbar />
 
-            <h2>Iniciar Sesión</h2>
+        <main className="login-page">
 
-            <form onSubmit={handleSubmit}>
+            <div className="login-card">
 
-                <input
-                    type="email"
-                    name="email"
-                    value={user.email}
-                    onChange={handleChange}
-                    placeholder="Correo"
-                    required
-                />
+                <h2>
+                    Iniciar Sesión
+                </h2>
 
-                <input
-                    type="password"
-                    name="password"
-                    value={user.password}
-                    onChange={handleChange}
-                    placeholder="Contraseña"
-                    required
-                />
+                <form onSubmit={handleSubmit}>
 
-                <button type="submit">
-                    Ingresar
-                </button>
+                    <input
+                        type="email"
+                        name="email"
+                        value={user.email}
+                        onChange={handleChange}
+                        placeholder="Correo"
+                        required
+                    />
 
-            </form>
+                    <input
+                        type="password"
+                        name="password"
+                        value={user.password}
+                        onChange={handleChange}
+                        placeholder="Contraseña"
+                        required
+                    />
 
-            <Link to="/register">
-                Registrarse
-            </Link>
+                    <button type="submit">
+                        Ingresar
+                    </button>
 
-            <br />
+                </form>
 
-            <Link to="/forgot-password">
-                ¿Olvidaste tu contraseña?
-            </Link>
+                <div className="login-links">
 
-        </>
+                    <Link to="/register">
+                        Registrarse
+                    </Link>
 
-    )
+                    <Link to="/forgot-password">
+                        ¿Olvidaste tu contraseña?
+                    </Link>
+
+                </div>
+
+            </div>
+
+        </main>
+    </>
+)
 
 }
 
