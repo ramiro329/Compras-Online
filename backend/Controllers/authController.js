@@ -105,15 +105,13 @@ const resetPassword = async (req, res) => {
 
 
 
-// =======================
-// REGISTER
-// =======================
+
 
 const register = async (req, res) => {
 
     const { nombre, apellido, email, password } = req.body
 
-    const rol_id = 2 // Cliente
+    const rol_id = 2  
 
     const verificar = `
         SELECT *
@@ -172,9 +170,6 @@ const register = async (req, res) => {
     })
 }
 
-// =======================
-// LOGIN
-// =======================
 
 const login = (req, res) => {
 
@@ -237,9 +232,6 @@ const login = (req, res) => {
     })
 }
 
-// =======================
-// VERIFY TOKEN
-// =======================
 
 const verifyToken = (req, res) => {
 

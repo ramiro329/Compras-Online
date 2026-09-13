@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAllCategories } from '../services/categoryService'
-
+import './CategoryFilter.css'
 const CategoryFilter = ({ onCategoryChange, value }) => {
 
     const [categorias, setCategorias] = useState([])
@@ -30,7 +30,8 @@ const CategoryFilter = ({ onCategoryChange, value }) => {
 
 
     return (
-        <select 
+        <select  className="category-filter"
+
         value={value}
         onChange={(e) => onCategoryChange(e.target.value)}
         >

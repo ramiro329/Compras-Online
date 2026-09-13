@@ -1,6 +1,5 @@
 const { conection } = require('../Config/database')
 
-// Obtener todos los usuarios activos
 const getAllUsersActives = (req, res) => {
     const consulta = `
         SELECT u.*, r.nombre AS rol
@@ -15,7 +14,6 @@ const getAllUsersActives = (req, res) => {
     })
 }
 
-// Obtener todos los usuarios inactivos
 const getAllUsersInactives = (req, res) => {
     const consulta = `
         SELECT u.*, r.nombre AS rol
@@ -30,7 +28,6 @@ const getAllUsersInactives = (req, res) => {
     })
 }
 
-// Obtener un usuario activo
 const getOneUserActive = (req, res) => {
     const id = req.params.id
 
@@ -52,7 +49,6 @@ const getOneUserActive = (req, res) => {
     })
 }
 
-// Obtener un usuario inactivo
 const getOneUserInactive = (req, res) => {
     const id = req.params.id
 
@@ -77,7 +73,6 @@ const getOneUserInactive = (req, res) => {
 
 
 
-// Buscar usuarios por nombre
 const searchUserByName = (req, res) => {
     const { nombre } = req.query
 

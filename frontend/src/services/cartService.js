@@ -1,6 +1,5 @@
 import useApi from '../customHooks/useApi'
 
-// Obtener el carrito de un usuario
 export const getCartByUser = async (usuario_id) => {
 
     const response = await useApi.get(`/carrito/usuario/${usuario_id}`)
@@ -8,7 +7,6 @@ export const getCartByUser = async (usuario_id) => {
     return response.data
 }
 
-// Crear carrito
 export const createCart = async (usuario_id) => {
 
     const response = await useApi.post('/carrito/crear', {
@@ -18,7 +16,6 @@ export const createCart = async (usuario_id) => {
     return response.data
 }
 
-// Agregar producto al carrito
 export const addProductToCart = async (data) => {
     console.log(data)
 
@@ -30,7 +27,6 @@ export const addProductToCart = async (data) => {
     return response.data
 }
 
-// Actualizar cantidad de un producto
 export const updateProductQuantity = async (id, cantidad) => {
 
     const response = await useApi.put(
@@ -41,7 +37,6 @@ export const updateProductQuantity = async (id, cantidad) => {
     return response.data
 }
 
-// Eliminar un producto del carrito
 export const removeProductFromCart = async (id) => {
 
     const response = await useApi.delete(
@@ -51,7 +46,6 @@ export const removeProductFromCart = async (id) => {
     return response.data
 }
 
-// Vaciar carrito
 export const clearCart = async (carrito_id) => {
 
     const response = await useApi.delete(

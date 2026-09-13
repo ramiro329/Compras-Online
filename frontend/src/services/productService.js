@@ -1,6 +1,5 @@
 import useApi from '../customHooks/useApi'
 
-// Obtener todos los productos activos
 export const getAllProducts = async (page = 1, limit = 10) => {
 
     const response = await useApi.get('/productos', {
@@ -14,7 +13,6 @@ export const getAllProducts = async (page = 1, limit = 10) => {
 
 }
 
-// Obtener todos los productos inactivos (Admin)
 export const getAllInactiveProducts = async (page = 1, limit = 10) => {
 
     const response = await useApi.get('/productos/inactivos', {
@@ -28,7 +26,6 @@ export const getAllInactiveProducts = async (page = 1, limit = 10) => {
 
 }
 
-// Obtener un producto activo
 export const getProductById = async (id) => {
 
     const response = await useApi.get(`/producto/${id}`)
@@ -36,7 +33,6 @@ export const getProductById = async (id) => {
     return response.data
 }
 
-// Obtener un producto inactivo (Admin)
 export const getInactiveProductById = async (id) => {
 
     const response = await useApi.get(`/producto/inactivo/${id}`)
@@ -71,7 +67,6 @@ export const getProductsByCategory = async (categoria_id, pagina, limite) => {
 
     return response.data
 }
-// Crear producto (Admin)
 export const createProduct = async (product) => {
 
     const response = await useApi.post(
@@ -82,7 +77,6 @@ export const createProduct = async (product) => {
     return response.data
 }
 
-// Editar producto (Admin)
 export const updateProduct = async (id, product) => {
 
     const response = await useApi.put(
@@ -93,7 +87,6 @@ export const updateProduct = async (id, product) => {
     return response.data
 }
 
-// Eliminar producto (Admin)
 export const deleteProduct = async (id) => {
 
     const response = await useApi.delete(
@@ -103,7 +96,6 @@ export const deleteProduct = async (id) => {
     return response.data
 }
 
-// Restaurar producto (Admin)
 export const restoreProduct = async (id) => {
 
     const response = await useApi.put(
@@ -113,7 +105,6 @@ export const restoreProduct = async (id) => {
     return response.data
 }
 
-// Productos sin stock (Admin)
 export const getProductsWithoutStock = async () => {
 
     const response = await useApi.get('/productos/sin-stock')
@@ -121,7 +112,6 @@ export const getProductsWithoutStock = async () => {
     return response.data
 }
 
-// Productos con stock bajo (Admin)
 export const getProductsLowStock = async () => {
 
     const response = await useApi.get('/productos/stock-bajo')
@@ -129,7 +119,6 @@ export const getProductsLowStock = async () => {
     return response.data
 }
 
-// Productos con stock normal (Admin)
 export const getProductsNormalStock = async () => {
 
     const response = await useApi.get('/productos/stock-normal')

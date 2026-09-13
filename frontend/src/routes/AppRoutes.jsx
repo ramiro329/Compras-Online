@@ -11,9 +11,7 @@ import ResetPassword from '../pages/auth/ResetPassword'
 
 import Cart from "../pages/Cart";
  import Favorites from "../pages/Favorites";
-// import Profile from "../pages/Profile";
 
-// import Products from "../pages/Products";
  import ProductDetail from "../pages/ProductDetail";
 
  import Success from "../pages/Success";
@@ -27,11 +25,9 @@ import {
     HOME,
     LOGIN,
     REGISTER,
-    // PRODUCTS,
     PRODUCT_DETAIL,
      CART,
      FAVORITES,
-    // PROFILE
     SUCCESS,
     ADMIN_PANEL,
     ADMIN_PEDIDOS,
@@ -40,13 +36,16 @@ import {
     ADMIN_USUARIOS
 } from "./rutas";
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const AppRoutes = () => {
 
     return (
+        <>
 
         <Routes>
 
-            {/* Públicas */}
 
             <Route
                 path={HOME}
@@ -78,17 +77,14 @@ const AppRoutes = () => {
                 element={<ProductDetail />}
             />
 
+            
+
             <Route
     path={SUCCESS}
     element={<Success />}
 />
 
-            {/* <Route
-                path={PRODUCTS}
-                element={<Products />}
-            />
-
-             */}
+            
 
 
 
@@ -109,18 +105,7 @@ const AppRoutes = () => {
 
                 </Route>
 
-            {/* Privadas */}
-{/* 
-           
-
-                
-
-                <Route
-                    path={PROFILE}
-                    element={<Profile />}
-                />
-
-             */}
+            
 
 
             <Route element={<AdminRoute />}>
@@ -154,6 +139,20 @@ const AppRoutes = () => {
                
 
         </Routes>
+
+        <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+
+        </>
 
     );
 

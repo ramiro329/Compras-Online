@@ -185,10 +185,8 @@ Podrás consultar el estado de tu pedido desde la sección "Mis pedidos".`
 
 const telefonoNegocio = "543816991773";
 
-window.open(
-`https://wa.me/${telefonoNegocio}?text=${encodeURIComponent(mensaje)}`,
-"_blank"
-);
+window.location.href =
+    `https://wa.me/${telefonoNegocio}?text=${encodeURIComponent(mensaje)}`;
 
 await vaciarCarrito(user.id, carrito.id);
     } catch (error) {

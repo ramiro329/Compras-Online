@@ -21,9 +21,21 @@ const Navbar = () => {
 
     <nav className="navbar">
 
-        <h2 className="navbar-logo">
+        
+
+        <div className="navbar-logo">
+             <img 
+        src="/favicon.svg" 
+        alt="Logo Electronica"
+        className="navbar-logo-image"
+    />
+
             Electronica
-        </h2>
+
+       
+    </div>
+
+         
 
         <ul className="navbar-menu">
 
@@ -66,11 +78,7 @@ const Navbar = () => {
                             </Link>
                         </li>
 
-                        <li>
-                            <Link to="/perfil">
-                                Perfil
-                            </Link>
-                        </li>
+                        
                     </>
                 )
             }
@@ -108,11 +116,7 @@ const Navbar = () => {
                             </Link>
                         </li>
 
-                        <li>
-                            <Link to="/admin/movimientos">
-                                Movimientos
-                            </Link>
-                        </li>
+                        
                     </>
                 )
             }

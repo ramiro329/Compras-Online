@@ -107,7 +107,7 @@ const ProductDetail = () => {
             <main className="detalle-producto">
                 <div className="detalle-imagen">
                     <img
-                        src={producto.imagen_principal || '/sin-imagen.png'}
+                        src={producto.imagen || '/sin-imagen.png'}
                         alt={producto.nombre}
                     />
                 </div>

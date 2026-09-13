@@ -1,6 +1,5 @@
 const { conection } = require('../Config/database')
 
-// Obtener todos los pedidos
 const getAllOrders = (req, res) => {
 
     const page = parseInt(req.query.page) || 1
@@ -73,7 +72,6 @@ const getAllOrders = (req, res) => {
     })
 }
 
-// Obtener un pedido por ID
 const getOneOrder = (req, res) => {
 
     const id = req.params.id
@@ -124,7 +122,6 @@ const getOneOrder = (req, res) => {
     })
 }
 
-// Crear pedido
 const createOrder = (req, res) => {
 
     const { usuario_id, total, productos } = req.body
@@ -199,7 +196,6 @@ const createOrder = (req, res) => {
     )
 }
 
-// Actualizar estado del pedido
 const updateOrderStatus = (req, res) => {
 
     const id = req.params.id
@@ -228,7 +224,6 @@ const updateOrderStatus = (req, res) => {
             }
 
 
-            // Si el pedido fue marcado como PAGADO
             if (estado_id == 2) {
 
 
@@ -279,7 +274,6 @@ const updateOrderStatus = (req, res) => {
 
 
 
-                                    // Actualizar stock
                                     conection.query(
                                         `
                                         UPDATE productos
@@ -294,7 +288,6 @@ const updateOrderStatus = (req, res) => {
 
 
 
-                                    // Registrar movimiento stock
                                     conection.query(
                                         `
                                         INSERT INTO movimientos_stock
@@ -324,7 +317,6 @@ const updateOrderStatus = (req, res) => {
 
 
 
-                                // Registrar movimiento financiero
                                 conection.query(
                                     `
                                     INSERT INTO movimientos_financieros
@@ -373,7 +365,6 @@ const updateOrderStatus = (req, res) => {
 
 }
 
-// Obtener pedidos de un usuario
 const getOrdersByUser = (req, res) => {
 
     const usuario_id = req.params.usuario_id
@@ -396,7 +387,6 @@ const getOrdersByUser = (req, res) => {
     })
 }
 
-// Obtener pedidos por estado
 const getOrdersByStatus = (req, res) => {
 
     const estado_id = req.params.estado_id

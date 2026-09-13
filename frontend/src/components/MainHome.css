@@ -4,16 +4,25 @@
 }
 
 
-/* Filtros */
+/* Filtrosjj */
 
 .home-filters {
     max-width: 1200px;
-    margin: 30px auto 20px;
-    padding: 0 20px;
+    margin: 30px auto 25px;
+    padding: 18px 20px;
 
     display: flex;
-    gap: 20px;
+    justify-content: center;
     align-items: center;
+    gap: 15px;
+
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    
+
+    box-sizing: border-box;
 }
 
 

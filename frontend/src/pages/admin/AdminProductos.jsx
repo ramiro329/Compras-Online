@@ -23,9 +23,7 @@ const AdminProductos = () => {
 
             <AdminProductTable />
 
-            {/* <AdminProductForm />
-
-            <AdminCategoryTable /> */}
+            
             </div>
 
         </>

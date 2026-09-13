@@ -1,10 +1,11 @@
-import React from 'react'
+import '../components/SearchBar.css'
 
 const SearchBar = ({ value, onChange }) => {
 
     return (
 
         <input
+            className="search-bar"
             type="text"
             placeholder="Buscar productos..."
             value={value}
@@ -16,3 +17,6 @@ const SearchBar = ({ value, onChange }) => {
 }
 
 export default SearchBar
+
+
+

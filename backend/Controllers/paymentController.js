@@ -264,12 +264,10 @@
 
                 const pedido = pedidoResult[0]
 
-                // Ya fue procesado anteriormente
                 if (pedido.estado_id === 2) {
                     return res.sendStatus(204)
                 }
 
-                // Cambiar a PAGADO
                 const actualizarPedido = `
                     UPDATE pedidos
                      SET
@@ -315,7 +313,6 @@
                             const nuevoStock =
                                 producto.stock - producto.cantidad
 
-                            // Actualizar stock
                             conection.query(
                                 `
                                 UPDATE productos
@@ -330,7 +327,6 @@
 
                                     if (err) throw err
 
-                                    // Registrar movimiento de stock
                                     conection.query(
                                         `
                                         INSERT INTO movimientos_stock
@@ -348,7 +344,7 @@
                                         [
                                             producto.producto_id,
                                             pedido.usuario_id,
-                                            2, // Venta
+                                            2,  
                                             producto.cantidad,
                                             producto.stock,
                                             nuevoStock,
@@ -370,7 +366,6 @@
 
                         actualizarStock(0)
 
-                        // Registrar movimiento financiero
                         conection.query(
                             `
                             INSERT INTO movimientos_financieros
@@ -385,14 +380,13 @@
                             `,
                             [
                                 pedido.usuario_id,
-                                1, // Ingreso
+                                1, 
                                 pedido.total,
                                 `Pago Pedido #${pedido_id}`,
                                 pedido_id
                             ]
                         )
 
-                        // Vaciar carrito
                         conection.query(
                             `
                             DELETE dc

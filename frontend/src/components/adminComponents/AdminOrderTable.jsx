@@ -44,7 +44,6 @@ const [totalPaginas, setTotalPaginas] = useState(1)
 
     if (pedidoSeleccionado?.id === id) {
 
-        // Si ya está abierto, lo cerramos
         setPedidoSeleccionado(null)
         setProductos([])
 
@@ -53,7 +52,6 @@ const [totalPaginas, setTotalPaginas] = useState(1)
 
     try {
 
-        // Si está cerrado, lo abrimos
         const response = await getOneOrder(id)
 
         setPedidoSeleccionado(response.pedido)

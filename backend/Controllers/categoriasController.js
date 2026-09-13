@@ -1,6 +1,5 @@
 const { conection } = require('../Config/database')
 
-// Obtener todas las categorías activas
 const getAllCategoriesActives = (req, res) => {
     const consulta = 'SELECT * FROM categorias WHERE activo = 1'
 
@@ -10,7 +9,6 @@ const getAllCategoriesActives = (req, res) => {
     })
 }
 
-// Obtener todas las categorías inactivas
 const getAllCategoriesInactives = (req, res) => {
     const consulta = 'SELECT * FROM categorias WHERE activo = 0'
 
@@ -20,7 +18,6 @@ const getAllCategoriesInactives = (req, res) => {
     })
 }
 
-// Obtener una categoría activa
 const getOneCategoryActive = (req, res) => {
     const id = req.params.id
 
@@ -37,7 +34,6 @@ const getOneCategoryActive = (req, res) => {
     })
 }
 
-// Obtener una categoría inactiva
 const getOneCategoryInactive = (req, res) => {
     const id = req.params.id
 
@@ -54,7 +50,6 @@ const getOneCategoryInactive = (req, res) => {
     })
 }
 
-// Crear categoría
 const createCategory = (req, res) => {
     const { nombre, descripcion, imagen_url } = req.body
 
@@ -75,7 +70,6 @@ const createCategory = (req, res) => {
     )
 }
 
-// Actualizar categoría
 const updateCategory = (req, res) => {
     const id = req.params.id
 
@@ -104,7 +98,6 @@ const updateCategory = (req, res) => {
     )
 }
 
-// Borrado lógico
 const deleteCategory = (req, res) => {
     const id = req.params.id
 
@@ -127,7 +120,6 @@ const deleteCategory = (req, res) => {
     })
 }
 
-// Restaurar categoría
 const restoreCategory = (req, res) => {
     const id = req.params.id
 
@@ -150,7 +142,6 @@ const restoreCategory = (req, res) => {
     })
 }
 
-// Buscar categoría por nombre
 const searchCategoryByName = (req, res) => {
     const { nombre } = req.query
 

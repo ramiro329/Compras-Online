@@ -1,6 +1,5 @@
 const { conection } = require('../Config/database')
 
-// Obtener favoritos de un usuario
 const getFavoritesByUser = (req, res) => {
 
     const usuario_id = req.params.usuario_id
@@ -28,7 +27,6 @@ const getFavoritesByUser = (req, res) => {
     })
 }
 
-// Agregar producto a favoritos
 const addFavorite = (req, res) => {
 
     const { usuario_id, producto_id } = req.body
@@ -74,7 +72,6 @@ const addFavorite = (req, res) => {
     )
 }
 
-// Eliminar favorito
 const removeFavorite = (req, res) => {
 
     const usuario_id = req.params.usuario_id
@@ -105,7 +102,6 @@ const removeFavorite = (req, res) => {
     )
 }
 
-// Verificar si un producto es favorito
 const isFavorite = (req, res) => {
 
     const usuario_id = req.params.usuario_id

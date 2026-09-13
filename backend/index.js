@@ -9,8 +9,6 @@ const carritoRoute = require('./Routes/carritoRoute')
 const categoriasRoute = require('./Routes/categoriasRoute')
 const favoritosRoute = require('./Routes/favoritosRoute')
 const imagenesRoute = require('./Routes/imagenesRoute')
-const movimientosFinancierosRoute = require('./Routes/movimientosFinancierosRoute')
-const movimientosStockRoute = require('./Routes/movimientosStockRoute')
 const pedidosRoute = require('./Routes/pedidosRoute')
 const usuariosRoute = require('./Routes/usuariosRoute')
 const authRoute = require('./Routes/authRoute')
@@ -22,16 +20,11 @@ app.use('/', carritoRoute)
 app.use('/', categoriasRoute)
 app.use('/', favoritosRoute)
 app.use('/', imagenesRoute)
-app.use('/', movimientosFinancierosRoute)
-app.use('/', movimientosStockRoute)
 app.use('/', pedidosRoute)
 app.use('/', usuariosRoute)
 app.use('/', authRoute)
 app.use('/', paymentsRoute)
 
-app.get('/', (req, res)  => {
-    res.send('Hello World')
-})  
 
 
 conection.connect((err) =>{

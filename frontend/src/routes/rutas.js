@@ -1,12 +1,10 @@
 export const HOME = "/";
 export const LOGIN = "/login";
 export const REGISTER = "/register";
-// export const PRODUCTS = "/productos";
 export const PRODUCT_DETAIL = "/producto/:id";
 export const SUCCESS = "/success";
  export const CART = "/carrito";
 export const FAVORITES = "/favoritos";
-// export const PROFILE = "/perfil";
 
 export const ADMIN_PANEL = "/admin";
 export const ADMIN_PEDIDOS = "/admin/pedidos";

@@ -4,7 +4,7 @@ import useCartStore from '../store/useCartStore'
 import useAuthStore from '../store/authStore'
 import useFavoriteStore from '../store/useFavoriteStore'    
 import '../components/ProductCard.css'
-
+import { toast } from 'react-toastify'
 const ProductCard = ({ producto }) => {
 
  
@@ -25,28 +25,41 @@ const favorito = esFavorito(producto.id)
 
     if (!user) {
 
-        alert('Debes iniciar sesión para agregar favoritos')
+        toast.info('Debes iniciar sesión para agregar favoritos')
         return
 
     }
 
+    if (favorito) {
 
-    agregarFavorito(
-        user.id,
-        producto.id
-    )
+        eliminarFavorito(
+            user.id,
+            producto.id
+        )
+
+        toast.success('Producto quitado de favoritos')
+
+    } else {
+
+        agregarFavorito(
+            user.id,
+            producto.id
+        )
+
+        toast.success('Producto agregado a favoritos')
+
+    }
 
 }
 
-    const handleAgregarCarrito = () => {
+    const handleAgregarCarrito = async () => {
 
     if (!user) {
 
-        alert('Debes iniciar sesión para agregar productos al carrito')
+        toast.info('Debes iniciar sesión para agregar productos al carrito')
         return
 
     }
-
 
     const data = {
 
@@ -56,8 +69,9 @@ const favorito = esFavorito(producto.id)
 
     }
 
+    await agregarProducto(user.id, data)
 
-    agregarProducto(user.id, data)
+    toast.success('Producto agregado al carrito')
 
 }
 
@@ -67,7 +81,7 @@ const favorito = esFavorito(producto.id)
 
         <div className="product-image-container">
             <img
-                src={producto.imagen_principal || '/sin-imagen.png'}
+                src={producto.imagen || '/sin-imagen.png'}
                 alt={producto.nombre}
             />
         </div>
@@ -85,36 +99,11 @@ const favorito = esFavorito(producto.id)
             </p>
 
             <button
-                className="product-button favorite-button"
-                onClick={() => {
-
-                    if (!user) {
-
-                        alert('Debes iniciar sesión para agregar favoritos')
-                        return
-
-                    }
-
-                    if (favorito) {
-
-                        eliminarFavorito(
-                            user.id,
-                            producto.id
-                        )
-
-                    } else {
-
-                        agregarFavorito(
-                            user.id,
-                            producto.id
-                        )
-
-                    }
-
-                }}
-            >
-                {favorito ? '💔 Quitar favorito' : '❤️ Favorito'}
-            </button>
+    className="product-button favorite-button"
+    onClick={handleAgregarFavorito}
+>
+    {favorito ? '💔 Quitar favorito' : '❤️ Favorito'}
+</button>
 
             <button
                 className="product-button cart-button"

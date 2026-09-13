@@ -1,6 +1,5 @@
 import useApi from '../customHooks/useApi'
 
-// Obtener todas las categorías activas
 export const getAllCategories = async () => {
 
     const response = await useApi.get('/categorias/activas')
@@ -8,7 +7,6 @@ export const getAllCategories = async () => {
     return response.data
 }
 
-// Obtener todas las categorías inactivas (Admin)
 export const getAllInactiveCategories = async () => {
 
     const response = await useApi.get('/categorias/inactivas')
@@ -16,7 +14,6 @@ export const getAllInactiveCategories = async () => {
     return response.data
 }
 
-// Obtener una categoría activa
 export const getCategoryById = async (id) => {
 
     const response = await useApi.get(`/categoria/activa/${id}`)
@@ -24,7 +21,6 @@ export const getCategoryById = async (id) => {
     return response.data
 }
 
-// Obtener una categoría inactiva (Admin)
 export const getInactiveCategoryById = async (id) => {
 
     const response = await useApi.get(`/categoria/inactiva/${id}`)
@@ -32,7 +28,6 @@ export const getInactiveCategoryById = async (id) => {
     return response.data
 }
 
-// Crear categoría (Admin)
 export const createCategory = async (category) => {
 
     const response = await useApi.post(
@@ -43,7 +38,6 @@ export const createCategory = async (category) => {
     return response.data
 }
 
-// Editar categoría (Admin)
 export const updateCategory = async (id, category) => {
 
     const response = await useApi.put(
@@ -54,7 +48,6 @@ export const updateCategory = async (id, category) => {
     return response.data
 }
 
-// Eliminar categoría (Admin)
 export const deleteCategory = async (id) => {
 
     const response = await useApi.delete(
@@ -64,7 +57,6 @@ export const deleteCategory = async (id) => {
     return response.data
 }
 
-// Restaurar categoría (Admin)
 export const restoreCategory = async (id) => {
 
     const response = await useApi.put(
@@ -74,7 +66,6 @@ export const restoreCategory = async (id) => {
     return response.data
 }
 
-// Buscar categoría por nombre
 export const searchCategoryByName = async (nombre) => {
 
     const response = await useApi.get('/categorias/buscar', {

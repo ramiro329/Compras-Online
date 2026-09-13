@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { resetPassword } from '../../services/authService'
-
+import './ResetPassword.css'
 const ResetPassword = () => {
 
     const { token } = useParams()
@@ -51,13 +51,24 @@ const ResetPassword = () => {
 
     }
 
-    return (
+    
+return (
 
-        <div>
+    <main className="reset-password-page">
+
+        <div className="reset-password-card">
 
             <h2>Restablecer contraseña</h2>
 
-            <form onSubmit={handleSubmit}>
+            <p className="reset-password-descripcion">
+                Ingresa tu nueva contraseña y confirmala para
+                completar el cambio.
+            </p>
+
+            <form
+                className="reset-password-form"
+                onSubmit={handleSubmit}
+            >
 
                 <input
                     type="password"
@@ -86,20 +97,24 @@ const ResetPassword = () => {
             </form>
 
             {mensaje && (
-                <p>
+                <p className="reset-password-mensaje">
                     {mensaje}
                 </p>
             )}
 
             {error && (
-                <p>
+                <p className="reset-password-error">
                     {error}
                 </p>
             )}
 
         </div>
 
-    )
+    </main>
+
+)
+
+
 
 }
 

@@ -1,6 +1,5 @@
 const { conection } = require('../Config/database')
 
-// Obtener todas las imágenes de un producto
 const getImagesByProduct = (req, res) => {
 
     const producto_id = req.params.producto_id
@@ -19,7 +18,6 @@ const getImagesByProduct = (req, res) => {
     })
 }
 
-// Obtener la imagen principal
 const getPrincipalImage = (req, res) => {
 
     const producto_id = req.params.producto_id
@@ -45,7 +43,6 @@ const getPrincipalImage = (req, res) => {
     })
 }
 
-// Agregar imagen
 const createImage = (req, res) => {
 
     const { producto_id, url, principal } = req.body
@@ -95,7 +92,6 @@ const createImage = (req, res) => {
 
 }
 
-// Cambiar imagen principal
 const setPrincipalImage = (req, res) => {
 
     const id = req.params.id
@@ -137,7 +133,6 @@ const setPrincipalImage = (req, res) => {
 
 }
 
-// Eliminar imagen
 const deleteImage = (req, res) => {
 
     const id = req.params.id

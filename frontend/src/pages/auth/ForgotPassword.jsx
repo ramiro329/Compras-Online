@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { forgotPassword } from '../../services/authService'
 import { Link } from 'react-router-dom'
-
+import './ForgotPassword.css'
 const ForgotPassword = () => {
 
     const [email, setEmail] = useState('')
@@ -33,52 +33,59 @@ const ForgotPassword = () => {
     }
 
     return (
+        <main className="forget-password-page">
 
-        <div>
+            <div className="forget-password-card">
 
-            <h2>Recuperar contraseña</h2>
+                <h2>Recuperar contraseña</h2>
 
-            <p>
-                Ingresa tu correo electrónico para recibir
-                un enlace para restablecer tu contraseña.
-            </p>
-
-            <form onSubmit={handleSubmit}>
-
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Correo electrónico"
-                    required
-                />
-
-                <button type="submit">
-                    Enviar enlace
-                </button>
-
-            </form>
-
-            {mensaje && (
-                <p>
-                    {mensaje}
+                <p className="forget-password-descripcion">
+                    Ingresa tu correo electrónico para recibir un
+                    enlace para restablecer tu contraseña.
                 </p>
-            )}
 
-            {error && (
-                <p>
-                    {error}
-                </p>
-            )}
+                <form
+                    className="forget-password-form"
+                    onSubmit={handleSubmit}
+                >
 
-            <Link to="/login">
-                Volver al inicio de sesión
-            </Link>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Correo electrónico"
+                        required
+                    />
 
-        </div>
+                    <button type="submit">
+                        Enviar enlace
+                    </button>
 
+                </form>
+
+                {mensaje && (
+                    <p className="forget-password-mensaje">
+                        {mensaje}
+                    </p>
+                )}
+
+                {error && (
+                    <p className="forget-password-error">
+                        {error}
+                    </p>
+                )}
+
+                <Link
+                    className="forget-password-volver"
+                    to="/login"
+                >
+                    ← Volver al inicio de sesión
+                </Link>
+
+            </div>
+
+        </main>
     )
-
 }
 
 export default ForgotPassword

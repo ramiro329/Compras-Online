@@ -142,7 +142,6 @@ return (
         </div>
 
 
-        {/* Formulario de creación */}
 
         {mostrarFormulario && (
 
@@ -161,7 +160,6 @@ return (
         )}
 
 
-        {/* Formulario de edición */}
 
         {categoriaEditar && (
 
@@ -181,7 +179,6 @@ return (
         )}
 
 
-        {/* Categorías activas */}
 
         {!mostrarInactivas && (
 
@@ -281,7 +278,6 @@ return (
         )}
 
 
-        {/* Categorías eliminadas */}
 
         {mostrarInactivas && (
 

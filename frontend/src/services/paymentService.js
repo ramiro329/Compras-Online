@@ -1,6 +1,5 @@
 import useApi from '../customHooks/useApi'
 
-// Crear una preferencia de pago en Mercado Pago
 export const createPayment = async () => {
 
     const response = await useApi.post(
@@ -11,7 +10,6 @@ export const createPayment = async () => {
 
 }
 
-// Obtener el pedido asociado a un pago
 export const getPedidoByPayment = async (paymentId) => {
 
     const response = await useApi.get(
