@@ -44,14 +44,14 @@ const MainHome = () => {
             response = await getProductsByCategory(
                 categoriaSeleccionada,
                 pagina,
-                10
+                12
             )
 
         } else {
 
             response = await getAllProducts(
                 pagina,
-                10
+                12
             )
 
         }

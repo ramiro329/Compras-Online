@@ -1,6 +1,6 @@
 import useApi from '../customHooks/useApi'
 
-export const getAllProducts = async (page = 1, limit = 10) => {
+export const getAllProducts = async (page = 1, limit = 12) => {
 
     const response = await useApi.get('/productos', {
         params: {
@@ -13,7 +13,7 @@ export const getAllProducts = async (page = 1, limit = 10) => {
 
 }
 
-export const getAllInactiveProducts = async (page = 1, limit = 10) => {
+export const getAllInactiveProducts = async (page = 1, limit = 12) => {
 
     const response = await useApi.get('/productos/inactivos', {
         params: {

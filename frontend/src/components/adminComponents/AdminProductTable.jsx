@@ -340,6 +340,38 @@ const AdminProductTable = () => {
                                         {producto.id}
                                     </td>
 
+
+
+
+
+                                    <td>
+
+                                            {producto.imagen ? (
+
+                                                <img
+                                                    className="admin-producto-imagen"
+                                                    src={producto.imagen}
+                                                    alt={producto.nombre}
+                                                />
+
+                                            ) : (
+
+                                                <span className="sin-imagen">
+                                                    Sin imagen
+                                                </span>
+
+                                            )}
+
+                                        </td>
+
+
+
+
+
+
+
+
+
                                     <td className="producto-nombre">
                                         {producto.nombre}
                                     </td>
