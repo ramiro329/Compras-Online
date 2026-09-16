@@ -112,6 +112,9 @@
 
                                 try {
 
+                                    console.log('CREANDO PREFERENCIA');
+console.log('WEBHOOK:', 'https://hawkish-henotheistic-olive.ngrok-free.dev/payment/webhook');
+
                                     const result = await preference.create({
                                         body: {
                                             items,
@@ -125,6 +128,8 @@
                                             notification_url: 'https://hawkish-henotheistic-olive.ngrok-free.dev/payment/webhook'
                                         }
                                     })
+                                    console.log('PREFERENCIA CREADA:', result.id);
+console.log('INIT POINT:', result.init_point);
 
                                     conection.query(
                                         `
@@ -224,10 +229,32 @@
 
             const type = req.query.type
             const paymentId = req.query["data.id"]
+            const topic = req.query.topic
+            const notificationId = req.query.id
 
-            if (type !== "payment") {
-                return res.sendStatus(204)
+            console.log('TYPE:', type)
+            console.log('TOPIC:', topic)
+            console.log('ID NOTIFICACIÓN:', notificationId)
+
+            if (topic === 'merchant_order') {
+
+    const merchantOrder = await fetch(
+        `https://api.mercadolibre.com/merchant_orders/${notificationId}`,
+        {
+            headers: {
+                Authorization: `Bearer ${process.env.MERCADO_PAGO_ACCESS_TOKEN}`
             }
+        }
+    ).then(res => res.json())
+
+    console.log('MERCHANT ORDER:', merchantOrder)
+
+    return res.sendStatus(204)
+}
+
+if (type !== "payment") {
+    return res.sendStatus(204)
+}
 
             const payment = await fetch(
                 

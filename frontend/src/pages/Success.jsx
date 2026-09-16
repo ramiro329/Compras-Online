@@ -1,7 +1,11 @@
+
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import './Success.css'
 
 const Success = () => {
+
+    const navigate = useNavigate()
 
     const numeroWhatsApp = '543816991773'
 
@@ -16,6 +20,10 @@ const Success = () => {
         )
     }
 
+    const volverAlInicio = () => {
+        navigate('/')
+    }
+
     return (
         <>
             <Navbar />
@@ -28,7 +36,7 @@ const Success = () => {
                     </div>
 
                     <h1>
-                        ¡Pago realizado correctamente! 🎉
+                        ¡Pago realizado correctamente!
                     </h1>
 
                     <p className="success-gracias">
@@ -44,12 +52,19 @@ const Success = () => {
                         className="success-whatsapp"
                         onClick={abrirWhatsApp}
                     >
-                        📱 Enviar comprobante por WhatsApp
+                        Enviar comprobante por WhatsApp
                     </button>
 
                     <p className="success-numero">
                         WhatsApp: 381 699-1773
                     </p>
+
+                    <button
+                        className="success-inicio"
+                        onClick={volverAlInicio}
+                    >
+                        Volver al inicio
+                    </button>
 
                 </div>
             </main>
@@ -58,5 +73,4 @@ const Success = () => {
 }
 
 export default Success
-
 
